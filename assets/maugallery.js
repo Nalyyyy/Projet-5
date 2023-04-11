@@ -48,23 +48,25 @@
     tagsPosition: "bottom",
     navigation: true
   };
+  // Open the gallery
   $.fn.mauGallery.listeners = function(options) {
     $(".gallery-item").on("click", function() {
       if (options.lightBox && $(this).prop("tagName") === "IMG") {
         $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
-      } else {
+      } else { 
         return;
       }
     });
-
+   // flèches prev ou next
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
-    $(".gallery").on("click", ".mg-prev", () =>
-      $.fn.mauGallery.methods.prevImage(options.lightboxId)
+    $(".gallery").on("click", ".mg-prev", () =>{
+      $.fn.mauGallery.methods.prevImage(options.lightboxId)}
     );
-    $(".gallery").on("click", ".mg-next", () =>
-      $.fn.mauGallery.methods.nextImage(options.lightboxId)
+    $(".gallery").on("click", ".mg-next", () =>{
+      $.fn.mauGallery.methods.nextImage(options.lightboxId)}
     );
   };
+
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
       if (
@@ -151,13 +153,14 @@
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
           index = i ;
+          index--             //j'ai rajouter ceci
         }
       });
       next =
-        imagesCollection[index] ||
-        imagesCollection[imagesCollection.length - 1];
+        imagesCollection[index] ||  imagesCollection[imagesCollection.length - 1];  //je pense ue le probleme est par la
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+    //fonction utilisé 
     nextImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -169,17 +172,17 @@
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
-          if ($(this).children("img").length) {
+          if ($(this).children("img").length) {      //log 9 fois
             imagesCollection.push($(this).children("img"));
           }
         });
-      } else {
+      } else {    //ceci nest pas log
         $(".item-column").each(function() {
-          if (
+          if (      
             $(this)
               .children("img")
               .data("gallery-tag") === activeTag
-          ) {
+          ) { 
             imagesCollection.push($(this).children("img"));
           }
         });
@@ -190,6 +193,7 @@
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
           index = i;
+          index++                //j'ai rajouter ceci
         }
       });
       next = imagesCollection[index] || imagesCollection[0];
@@ -240,7 +244,7 @@
         return;
       }
       $(".active-tag").removeClass("active active-tag");
-      $(this).addClass("active-tag");
+      $(this).addClass("active active-tag");                          //a la base il y avait ("active-tag") j'ai donc rajouter active
 
       var tag = $(this).data("images-toggle");
 
