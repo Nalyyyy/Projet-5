@@ -123,41 +123,47 @@
     },
     prevImage() {
       let activeImage = null;
+      console.log($("img.gallery-item"));
       $("img.gallery-item").each(function() {
         if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
           activeImage = $(this);
+          console.log(activeImage);
         }
       });
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
       let imagesCollection = [];
+      console.log(activeTag);
+      console.log($(".item-column"));
       if (activeTag === "all") {
         $(".item-column").each(function() {
-          if ($(this).children("img").length) {
-            imagesCollection.push($(this).children("img"));
-          }
+          if ($(this).children("picture").length) {
+            let picture= $(this).children("picture")        // ++++
+            imagesCollection.push($(picture).children("img"));
+          } 
         });
       } else {
         $(".item-column").each(function() {
           if (
             $(this)
-              .children("img")
+              .children("picture")
               .data("gallery-tag") === activeTag
           ) {
-            imagesCollection.push($(this).children("img"));
+            let picture= $(this).children("picture")      // ++++
+            imagesCollection.push($(picture).children("img"));
           }
         });
       }
       let index = 0,
         next = null;
-
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
           index = i ;
           index--             //j'ai rajouter ceci
+          console.log('ok');
         }
       });
       next =
-        imagesCollection[index] ||  imagesCollection[imagesCollection.length - 1];  //je pense ue le probleme est par la
+        imagesCollection[index] ||  imagesCollection[imagesCollection.length - 1];  //je pense que le probleme est par la
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
     //fonction utilisé 
