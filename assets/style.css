@@ -129,6 +129,13 @@ body {
 	object-fit: cover;
 	padding: .5em;
 }
+.gallery-p {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	padding: 0;
+}
 .mg-prev, .mg-next {
 	width: 30px;
 	height: 30px;
