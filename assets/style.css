@@ -25,6 +25,10 @@ body {
 	font-size: 26px;
 }
 
+.d-block{
+	height: 100%;
+}
+
 .nav ul {
 	display: flex;
 	list-style-type: none;
@@ -43,6 +47,7 @@ body {
 
 .social-link img {
 	width: 20px;
+	height: 20px;
 }
 
 #about {
@@ -72,6 +77,7 @@ body {
 
 .picture img {
 	width: 100%;
+	height: 100%;
 
 }
 #about-me {
