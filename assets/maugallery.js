@@ -178,18 +178,20 @@
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
-          if ($(this).children("img").length) {      //log 9 fois
-            imagesCollection.push($(this).children("img"));
+          if ($(this).children("picture").length) {
+            let picture= $(this).children("picture") 
+            imagesCollection.push($(picture).children("img"));
           }
         });
       } else {    //ceci nest pas log
         $(".item-column").each(function() {
           if (      
             $(this)
-              .children("img")
+              .children("picture")
               .data("gallery-tag") === activeTag
           ) { 
-            imagesCollection.push($(this).children("img"));
+            let picture= $(this).children("picture")      // ++++
+            imagesCollection.push($(picture).children("img"));
           }
         });
       }
